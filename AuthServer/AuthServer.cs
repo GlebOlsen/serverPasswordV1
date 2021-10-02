@@ -44,6 +44,10 @@ namespace AuthServer
                 sw.WriteLine(JsonConvert.SerializeObject(UserInformations));
                 sw.WriteLine(JsonConvert.SerializeObject(words));
                 DictionaryWords.RemoveRange(0, 50000);
+
+                List<string> message = JsonConvert.DeserializeObject<List<string>>(sr.ReadLine());
+                Console.WriteLine(string.Join(",",message ));
+                
             }
 
 

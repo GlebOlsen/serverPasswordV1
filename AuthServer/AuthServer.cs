@@ -38,16 +38,20 @@ namespace AuthServer
                 StreamWriter sw = new StreamWriter(ns);
                 sw.AutoFlush = true; // enable automatic flushing
 
-                IEnumerable<string> words = DictionaryWords.Take(50000);
+                IEnumerable<string> words = DictionaryWords.Take(50);
 
 
                 sw.WriteLine(JsonConvert.SerializeObject(UserInformations));
                 sw.WriteLine(JsonConvert.SerializeObject(words));
-                DictionaryWords.RemoveRange(0, 50000);
+                DictionaryWords.RemoveRange(0, 50);
 
+                string pcName = JsonConvert.DeserializeObject<string>(sr.ReadLine()); ;
+
+                DateTime localDate = DateTime.Now;
                 List<string> message = JsonConvert.DeserializeObject<List<string>>(sr.ReadLine());
-                Console.WriteLine(string.Join(",",message ));
-                
+
+                Console.WriteLine(pcName);
+                Console.WriteLine("The password/s are/is: <" + string.Join(",",message )+ "> .    At the time: " + localDate);
             }
 
 
